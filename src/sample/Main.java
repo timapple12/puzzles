@@ -4,19 +4,18 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,7 @@ public class Main extends Application {
         Group root = new Group();
         primaryStage.setScene(new Scene(root));
 
-        text = new Text("");
-        text.setTranslateX(-45);
-
+        text = new Text();
         Image image = new Image(getClass().getResourceAsStream(
                 "download.jpeg"));
 
@@ -67,13 +64,18 @@ public class Main extends Application {
 
         Button solveButton = new Button("Solve");
         onClickSolveButtonAction(Puzzles, solveButton);
-        solveButton.setTranslateX(100);
+        solveButton.setTranslateX(Desk.deskWith - solveButton.getWidth() - 110);
 
         HBox buttonBox = new HBox(10);
         buttonBox.getChildren().addAll(mixButton, solveButton, text);
 
-        VBox vb = new VBox(10);
-        vb.getChildren().addAll(desk, buttonBox);
+        Text text = new Text("Original image:");
+        text.setTranslateX((Desk.deskWith/2) - 50);
+        text.setFill(Color.BLUE);
+        ImageView imageView = new ImageView(image);
+
+        VBox vb = new VBox(20);
+        vb.getChildren().addAll(desk, buttonBox, text, imageView);
         root.getChildren().addAll(vb);
     }
 
@@ -81,6 +83,7 @@ public class Main extends Application {
 
         solveButton.setOnAction(actionEvent -> {
             text.setText("AutoSolving");
+            text.setTranslateX(45 - (Desk.deskWith/2));
             if (timeline != null){
                 timeline.stop();
             }
@@ -101,6 +104,7 @@ public class Main extends Application {
     private void onClickMixButtonAction(Desk desk, List<Puzzle> puzzles, Button shuffleButton) {
         shuffleButton.setOnAction(actionEvent -> {
             text.setText("Mixed!");
+            text.setTranslateX(50 - (Desk.deskWith/2));
             if (timeline != null) {
                 timeline.stop();
             }

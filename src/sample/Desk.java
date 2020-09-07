@@ -8,8 +8,8 @@ import javafx.scene.shape.Path;
 
 public class Desk extends Pane {
     
-    double deskWith;
-    double deskHeight;
+    public static double deskWith;
+    public static double deskHeight;
     
     Desk(int numOfColumns, int numOfRows) {
         setStyle("-fx-background-color: #cccccc;");
@@ -22,7 +22,7 @@ public class Desk extends Pane {
         autosize();
 
         Path grid = new Path();
-        grid.setStroke(Color.rgb(70, 200, 200));
+        grid.setStroke(Color.rgb(70, 20, 200));
         getChildren().add(grid);
 
         //   Create vertical lines

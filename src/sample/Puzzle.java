@@ -89,7 +89,6 @@ public class Puzzle extends Parent {
             if (getRotate() >= 360) {
                 setRotate(0);
             }
-
         });
 
         setOnMouseDragged(me -> {

@@ -26,6 +26,7 @@ import java.util.*;
 
 /**
  * Created by Andrew Valiukh
+ * Can work with images with resolution above 300*200!
  */
 public class Main extends Application {
 
@@ -34,6 +35,7 @@ public class Main extends Application {
     protected static int numberOfPuzzles;
     private Group root;
     private ImageView imageViewAutoSolving;
+    private List<ImageView> tiles = new ArrayList();
     private int numOfColumns;
     private int numOfRows;
     private String format = ".jpeg";
@@ -72,8 +74,8 @@ public class Main extends Application {
         /**
          * This method split image into tiles, uncomment if needed
          * */
-        //BufferedImage image1 = SwingFXUtils.fromFXImage(image, null);
-        //splitImage(image1);
+        BufferedImage image1 = SwingFXUtils.fromFXImage(image, null);
+        splitImage(image1);
 
         Button mixButton = new Button("Mix");
         onClickMixButtonAction(desk, Puzzles, mixButton);
@@ -109,7 +111,7 @@ public class Main extends Application {
             BufferedImage bufferedImage;
 
             text.setText("AutoSolving");
-            text.setTranslateX(270);
+            text.setTranslateX(170);
             if (timeline != null) {
                 timeline.stop();
             }
@@ -130,7 +132,7 @@ public class Main extends Application {
             for (Integer i : getRandomSet(numberOfPuzzles)) {
                 savedPhotoNumber++;
                 try {
-                    bufferedImage = ImageIO.read(new File("/home/andrew/puzzles/" + i + format));
+                    bufferedImage = ImageIO.read(new File("/home/andrew/puzzles/src/tiles/" + i + format));
                     map.put(savedPhotoNumber, bufferedImage);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -181,17 +183,18 @@ public class Main extends Application {
                         int rgb = map.get(i).getRGB(k, 0);
                         putRgbToList(bottomPixels, rgb);
                     }
-
-                    root.getChildren().addAll(imageViewAutoSolving);
+                    tiles.add(imageViewAutoSolving);
                 }
                 if (horizontalSort(rightPixels, leftPixels) && verticalSort(topPixels, bottomPixels)) {
                     rightPixels.clear();
                     leftPixels.clear();
                     topPixels.clear();
                     bottomPixels.clear();
+                    root.getChildren().addAll(tiles);
                     break;
                 }
-
+                imageViewAutoSolving = null;
+                tiles.clear();
                 rightPixels.clear();
                 leftPixels.clear();
                 topPixels.clear();
@@ -239,7 +242,7 @@ public class Main extends Application {
                 }
             }
         }
-        if (matchedPixels > 850) {
+        if (matchedPixels > 850) {      /** Change the number to increase/decrease errors */
             return true;
         }
         return false;
@@ -290,7 +293,7 @@ public class Main extends Application {
                     count++;
                     BufferedImage SubImgage = image.getSubimage(y, x, eWidth, eHeight);
                     y += eWidth;
-                    ImageIO.write(SubImgage, "jpeg", new File("/home/andrew/puzzles/" + count + format));
+                    ImageIO.write(SubImgage, "jpeg", new File("/home/andrew/puzzles/src/tiles/" + count + format));
 
 
                 } catch (Exception e) {
@@ -306,9 +309,10 @@ public class Main extends Application {
     private void onClickMixButtonAction(Desk desk, List<Puzzle> puzzles, Button shuffleButton) {
 
         shuffleButton.setOnAction(actionEvent -> {
+            root.getChildren().removeAll(tiles);
             imageViewAutoSolving.setVisible(false);
             text.setText("Mixed!");
-            text.setTranslateX(270);
+            text.setTranslateX(170);
             if (timeline != null) {
                 timeline.stop();
             }

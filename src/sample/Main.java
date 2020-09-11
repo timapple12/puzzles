@@ -39,9 +39,9 @@ public class Main extends Application {
     private int numOfColumns;
     private int numOfRows;
     private String format = ".jpeg";
-    private String name = "download";
+    private String name = "download5";
 
-    private void init(Stage primaryStage) throws IOException {
+    private void init(Stage primaryStage){
         imageViewAutoSolving = new ImageView();
         root = new Group();
         primaryStage.setScene(new Scene(root));
@@ -250,11 +250,11 @@ public class Main extends Application {
     private boolean verticalSort(List<Integer> topPixels, List<Integer> bottomPixels){
         int matchedPixels = 0;
         for (int j = 0; j < 300; j++) {
-            if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 18) {
+            if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
                 matchedPixels++;
             }
         }
-        if(matchedPixels > 60){
+        if(matchedPixels > 150){
             return true;
         }
         return false;

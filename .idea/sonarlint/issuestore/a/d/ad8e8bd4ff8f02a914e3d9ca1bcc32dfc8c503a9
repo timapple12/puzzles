@@ -1,0 +1,76 @@
+
+Y	java:S125Ò"<This block of commented-out lines of code should be removed.(±¯€¤8–ÜåÂÇ.
+d
+java:S1126ˆ"AReplace this if-then-else statement by a single return statement.(ğİåÄøÿÿÿÿ8üµÃÇ.
+Y	java:S125×"<This block of commented-out lines of code should be removed.(±¯€¤8ÃûåÂÇ.
+Y	java:S125ä"<This block of commented-out lines of code should be removed.(¤”˜ÿ8àÏŞÂÇ.
+^	java:S125­"<This block of commented-out lines of code should be removed.(ÀÓé‰şÿÿÿÿ8üµÃÇ.
+Q	java:S125r"<This block of commented-out lines of code should be removed.(Ê†¾Å
+d
+java:S1126é"AReplace this if-then-else statement by a single return statement.(û¦ãşûÿÿÿÿ8üµÃÇ.
+^	java:S125£"<This block of commented-out lines of code should be removed.(×„îéúÿÿÿÿ8üµÃÇ.
+o
+java:S3776a"RRefactor this method to reduce its Cognitive Complexity from 49 to the 15 allowed.(ÛÏÛ’8±–¸¢Ç.
+K
+java:S1481k"5Remove this unused "allBorderColours" local variable.(âÍµ
+Y	java:S125ÿ"<This block of commented-out lines of code should be removed.(ÄñÓı8àÏŞÂÇ.
+^	java:S125¢"<This block of commented-out lines of code should be removed.(×„îéúÿÿÿÿ8™ßÅÃÇ.
+n	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Ğñº8üµÃÇ.
+^	java:S125²"<This block of commented-out lines of code should be removed.(Èû¾úÿÿÿÿ8üµÃÇ.
+f	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÓÇ
+‡
+java:S1130)"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(²˜î£üÿÿÿÿ
+E
+java:S1481l"*Remove this unused "leftt" local variable.(”·« øÿÿÿÿ
+k	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ïÀÅşÿÿÿÿ
+^	java:S125„"<This block of commented-out lines of code should be removed.(çœáâùÿÿÿÿ8¤•öÃÇ.
+A
+java:S2119õ"Save and re-use this "Random".(‹ÛË«ûÿÿÿÿ8üµÃÇ.
+J
+java:S3740;"/Provide the parametrized type for this generic.(¥ïÀÅşÿÿÿÿ
+^	java:S125ğ"<This block of commented-out lines of code should be removed.(ä“ªÔúÿÿÿÿ8àÏŞÂÇ.
+Y	java:S125ˆ"<This block of commented-out lines of code should be removed.(â‰ªÃ8ÃµèÄÇ.
+S
+java:S1117U"8Rename "text" which hides the field declared at line 33.(Æä°Ïûÿÿÿÿ
+u
+java:S3776ô"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(ˆÙÙòøÿÿÿÿ8àÏŞÂÇ.
+P
+java:S1144"-Remove this unused private "vercical" method.(ŠÃ¤«ùÿÿÿÿ8üµÃÇ.
+K
+java:S2696-"6Make the enclosing method "static" or remove this set.(˜Íå
+u
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ŠÃ¤«ùÿÿÿÿ8üµÃÇ.
+^	java:S125"<This block of commented-out lines of code should be removed.(çœáâùÿÿÿÿ8ûÎöÃÇ.
+z
+java:S1450%"XRemove the "numOfRows" field and declare it as a local variable in the relevant methods.(â•ö™ûÿÿÿÿ8Ùë—ÃÇ.
+Q
+java:S26963"6Make the enclosing method "static" or remove this set.(²®Ó†ıÿÿÿÿ
+^	java:S125é"<This block of commented-out lines of code should be removed.(›¿äÅÿÿÿÿÿ8ÛÅÜÂÇ.
+Y	java:S125¦"<This block of commented-out lines of code should be removed.(†É¹Ÿ8ÛÅÜÂÇ.
+V	java:S106"9Replace this use of System.out or System.err by a logger.(ÆïÅ«8üµÃÇ.
+^	java:S125–"<This block of commented-out lines of code should be removed.(×„îéúÿÿÿÿ8ç¯ÁÃÇ.
+Y	java:S125™"<This block of commented-out lines of code should be removed.(ÄñÓı8üµÃÇ.
+Y	java:S125ƒ"<This block of commented-out lines of code should be removed.(ÉÙºÓ8Â‰¿ÂÇ.
+^	java:S125ù"<This block of commented-out lines of code should be removed.(çœáâùÿÿÿÿ8Õ³õÄÇ.
+k
+java:S2184œ"HCast one of the operands of this multiplication operation to a "double".(¤‚óÙøÿÿÿÿ8ÛÅÜÂÇ.
+R
+java:S1144ş"/Remove this unused private "splitImage" method.(¯ÊÉšşÿÿÿÿ8ÃµèÄÇ.
+^	java:S125ç"<This block of commented-out lines of code should be removed.(ˆ¸öªıÿÿÿÿ8àÏŞÂÇ.
+V	java:S125B"<This block of commented-out lines of code should be removed.(ÎšÕÍıÿÿÿÿ
+^	java:S125Š"<This block of commented-out lines of code should be removed.(×„îéúÿÿÿÿ8üµÃÇ.
+^	java:S125œ"<This block of commented-out lines of code should be removed.(çœáâùÿÿÿÿ8šåöÃÇ.
+G
+java:S1481n"*Remove this unused "image" local variable.(Ê³ğô8ÃµèÄÇ.
+S
+java:S2209®"5Change this instance-reference to a static reference.(¨ïˆ8üµÃÇ.
+k
+java:S2184 "HCast one of the operands of this multiplication operation to a "double".(¤‚óÙøÿÿÿÿ8ÛÅÜÂÇ.
+Y	java:S125¨"<This block of commented-out lines of code should be removed.(‰ßâ8úÅÃÇ.
+k
+java:S2184¤"HCast one of the operands of this multiplication operation to a "double".(¤‚óÙøÿÿÿÿ8ÛÅÜÂÇ.
+S
+java:S2209¬"5Change this instance-reference to a static reference.(Öâÿÿ8üµÃÇ.
+Q	java:S125W"<This block of commented-out lines of code should be removed.(»á¥¾
+^	java:S125È"<This block of commented-out lines of code should be removed.(Èû¾úÿÿÿÿ8üµÃÇ.
+]	java:S125"<This block of commented-out lines of code should be removed.(ÖÅ°ôùÿÿÿÿ8¨Ö¿ÂÇ.

@@ -14,7 +14,7 @@ public class Desk extends Pane {
     Desk(int numOfColumns, int numOfRows) {
         setStyle("-fx-background-color: #cccccc;");
 
-        deskWith = Puzzle.SIZE * numOfColumns;
+        deskWith = Puzzle.SIZE * numOfColumns * 2;
         deskHeight = Puzzle.SIZE * numOfRows;
 
         setPrefSize(deskWith,deskHeight);           // Creating desk with right sizes

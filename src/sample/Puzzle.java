@@ -1,15 +1,22 @@
 package sample;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Puzzle extends Parent {
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+
+public class Puzzle extends Parent{
 
     public static final int SIZE = 100;
 
@@ -36,8 +43,7 @@ public class Puzzle extends Parent {
 
         this.deskWidth = width;
         this.deskHeight = height;
-        configureClip();
-        configureShape();
+        configureClip();configureShape();
         configImage(image);
     }
 
@@ -58,8 +64,7 @@ public class Puzzle extends Parent {
         imageView.setClip(pieceClip);
         setFocusTraversable(true);
         getChildren().addAll(imageView, pieceShape);
-
-        //setCache(true);
+        setCache(true);
 
         setInactive();
 
@@ -68,6 +73,7 @@ public class Puzzle extends Parent {
             startDragX = getTranslateX();
             startDragY = getTranslateY();
             dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
+
         });
 
         setOnMouseReleased(me -> {
@@ -145,4 +151,11 @@ public class Puzzle extends Parent {
     public double getY() {
         return y;
     }
+
+
+    public ImageView getImageView(){
+        return imageView;
+    }
+
+
 }

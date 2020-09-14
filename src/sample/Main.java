@@ -39,7 +39,11 @@ public class Main extends Application {
     private int numOfColumns;
     private int numOfRows;
     private String format = ".jpeg";
-    private String name = "download5";
+    private String name = "download";
+    private int horizontalError=1000;
+    private int verticalError = 450;
+    private int numbsOfTurnsH;
+    private int numbsOfTurnsV;
 
     private void init(Stage primaryStage){
         imageViewAutoSolving = new ImageView();
@@ -138,9 +142,11 @@ public class Main extends Application {
                     e.printStackTrace();
                 }
             }
+
             while (true) {
                 counter = 0;
-
+                numbsOfTurnsH++;
+                numbsOfTurnsV++;
                 for (Integer i : getRandomSet(numberOfPuzzles)) {
 
                     imageViewAutoSolving = new ImageView();
@@ -242,19 +248,40 @@ public class Main extends Application {
                 }
             }
         }
-        if (matchedPixels > 850) {      /** Change the number to increase/decrease errors */
+        if(numbsOfTurnsH>400){
+            horizontalError -=10;
+            numbsOfTurnsH=0;
+        }
+
+        if (matchedPixels > horizontalError) {      /** Change the number to increase/decrease errors */
             return true;
         }
         return false;
     }
     private boolean verticalSort(List<Integer> topPixels, List<Integer> bottomPixels){
         int matchedPixels = 0;
-        for (int j = 0; j < 300; j++) {
-            if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
-                matchedPixels++;
+        for (int j = 0; j < 900; j++) {
+            if(j<=300){
+                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
+                    matchedPixels++;
+                }
+            }
+            if(j>300&&j<=600){
+                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
+                    matchedPixels++;
+                }
+            }
+            if(j>600&&j<900){
+                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
+                    matchedPixels++;
+                }
             }
         }
-        if(matchedPixels > 150){
+        if(numbsOfTurnsV>200){
+            verticalError-=5;
+            numbsOfTurnsV=0;
+        }
+        if(matchedPixels > verticalError){
             return true;
         }
         return false;

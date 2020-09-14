@@ -39,7 +39,7 @@ public class Main extends Application {
     private int numOfColumns;
     private int numOfRows;
     private String format = ".jpeg";
-    private String name = "download";
+    private String name = "download3";
     private int horizontalError=1000;
     private int verticalError = 450;
     private int numbsOfTurnsH;
@@ -197,6 +197,10 @@ public class Main extends Application {
                     topPixels.clear();
                     bottomPixels.clear();
                     root.getChildren().addAll(tiles);
+                    numbsOfTurnsH=0;
+                    numbsOfTurnsV=0;
+                    horizontalError=1000;
+                    verticalError=450;
                     break;
                 }
                 imageViewAutoSolving = null;
@@ -249,7 +253,7 @@ public class Main extends Application {
             }
         }
         if(numbsOfTurnsH>400){
-            horizontalError -=10;
+            horizontalError -=40;
             numbsOfTurnsH=0;
         }
 
@@ -277,8 +281,8 @@ public class Main extends Application {
                 }
             }
         }
-        if(numbsOfTurnsV>200){
-            verticalError-=5;
+        if(numbsOfTurnsV>150){
+            verticalError-=10;
             numbsOfTurnsV=0;
         }
         if(matchedPixels > verticalError){

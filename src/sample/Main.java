@@ -26,7 +26,7 @@ import java.util.*;
 
 /**
  * Created by Andrew Valiukh
- * Can work with images with resolution above 300*200!
+ * Can work with images with resolution above 400*400!
  */
 public class Main extends Application {
 
@@ -38,27 +38,30 @@ public class Main extends Application {
     private List<ImageView> tiles = new ArrayList();
     private int numOfColumns;
     private int numOfRows;
-    private String format = ".jpeg";
+    private String format = ".jpg";
     private String name = "download3";
-    private int horizontalError=1000;
-    private int verticalError = 450;
+    private int horizontalError;
+    private int verticalError;
     private int numbsOfTurnsH;
     private int numbsOfTurnsV;
+    private int border;
 
-    private void init(Stage primaryStage){
+    private void init(Stage primaryStage) {
         imageViewAutoSolving = new ImageView();
         root = new Group();
         primaryStage.setScene(new Scene(root));
 
         text = new Text();
         Image image = new Image(getClass().getResourceAsStream(
-                name + ".jpg"));
+                name + format));
 
         numOfColumns = (int) (image.getWidth() / Puzzle.SIZE);
         numOfRows = (int) (image.getHeight() / Puzzle.SIZE);
         numberOfPuzzles = numOfColumns * numOfRows;
+        horizontalError = numberOfPuzzles * 170;
+        verticalError = numberOfPuzzles * 75;
 
-        if (numOfColumns > 3 || numOfRows > 2) {
+        if (numOfColumns > 4 || numOfRows > 4) {
             throw new IllegalArgumentException("Too large photo!");
         }
 
@@ -109,9 +112,11 @@ public class Main extends Application {
 
         solveButton.setOnAction(actionEvent -> {
 
-            int column = 0;
+            int counterY;
+            int counterX;
             int savedPhotoNumber = 0;
-            int counter;
+            int counter = 0;
+
             BufferedImage bufferedImage;
 
             text.setText("AutoSolving");
@@ -136,7 +141,7 @@ public class Main extends Application {
             for (Integer i : getRandomSet(numberOfPuzzles)) {
                 savedPhotoNumber++;
                 try {
-                    bufferedImage = ImageIO.read(new File("/home/andrew/puzzles/src/tiles/" + i + format));
+                    bufferedImage = ImageIO.read(new File("/home/andrew/puzzles/src/tiles/" + i + ".jpeg"));
                     map.put(savedPhotoNumber, bufferedImage);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -144,32 +149,25 @@ public class Main extends Application {
             }
 
             while (true) {
-                counter = 0;
+                counterX = 0;
+                counterY = 0;
                 numbsOfTurnsH++;
                 numbsOfTurnsV++;
-                for (Integer i : getRandomSet(numberOfPuzzles)) {
 
+                for (Integer i : getRandomSet(numberOfPuzzles)) {
                     imageViewAutoSolving = new ImageView();
+
                     imageViewAutoSolving.setImage(SwingFXUtils.toFXImage(map.get(i), null));
 
-                    if (counter < 2) {
-                        imageViewAutoSolving.setTranslateX(0);
-                        imageViewAutoSolving.setTranslateY(100 * column);
-                    }
-                    if (counter >= 2 && counter < 4) {
-                        imageViewAutoSolving.setTranslateX(100);
-                        imageViewAutoSolving.setTranslateY(100 * column);
-                    }
-                    if (counter >= 4 && counter < 6) {
-                        imageViewAutoSolving.setTranslateX(200);
-                        imageViewAutoSolving.setTranslateY(100 * column);
-                    }
+                    imageViewAutoSolving.setTranslateX(counterX * 100);
+                    imageViewAutoSolving.setTranslateY(counterY * 100);
 
                     counter++;
-                    column++;
+                    counterY++;
 
-                    if (column >= 2) {
-                        column = 0;
+                    if (counterY >= numOfRows) {
+                        counterY = 0;
+                        counterX++;
                     }
 
                     for (int k = 0; k < 100; k++) {
@@ -192,15 +190,15 @@ public class Main extends Application {
                     tiles.add(imageViewAutoSolving);
                 }
                 if (horizontalSort(rightPixels, leftPixels) && verticalSort(topPixels, bottomPixels)) {
+                    numbsOfTurnsH = 0;
+                    numbsOfTurnsV = 0;
+                    horizontalError = numberOfPuzzles * 170;
+                    verticalError = numberOfPuzzles * 75;
                     rightPixels.clear();
                     leftPixels.clear();
                     topPixels.clear();
                     bottomPixels.clear();
                     root.getChildren().addAll(tiles);
-                    numbsOfTurnsH=0;
-                    numbsOfTurnsV=0;
-                    horizontalError=1000;
-                    verticalError=450;
                     break;
                 }
                 imageViewAutoSolving = null;
@@ -224,37 +222,16 @@ public class Main extends Application {
 
     private boolean horizontalSort(List<Integer> rightPixels, List<Integer> leftPixels) {
         int matchedPixels = 0;
+        border = numberOfPuzzles * 300 - 600;
 
-        for (int j = 0; j < 1800; j++) {
-
-            if (j <= 300) {
-                if (Math.abs(rightPixels.get(j) - leftPixels.get(j + Puzzle.SIZE * 6)) < 18) {
-                    matchedPixels++;
-                }
-            }
-
-            if (j > 300 && j <= 600) {
-                if (Math.abs(rightPixels.get(j) - leftPixels.get(j + Puzzle.SIZE * 6)) < 18) {
-                    matchedPixels++;
-                }
-            }
-
-            if (j > 600 && j <= 900) {
-                if (Math.abs(rightPixels.get(j) - leftPixels.get(j + Puzzle.SIZE * 6)) < 18) {
-                    matchedPixels++;
-                }
-            }
-
-            if (j > 900 && j < 1200) {
-                if (Math.abs(rightPixels.get(j) - leftPixels.get(j + Puzzle.SIZE * 6)) < 18) {
-                    matchedPixels++;
-
-                }
+        for (int j = 0; j < border; j++) {
+            if (Math.abs(rightPixels.get(j) - leftPixels.get(j + Puzzle.SIZE * 6)) < 18) {
+                matchedPixels++;
             }
         }
-        if(numbsOfTurnsH>400){
-            horizontalError -=40;
-            numbsOfTurnsH=0;
+        if (numbsOfTurnsH > 400) {
+            horizontalError -= 40;
+            numbsOfTurnsH = 0;
         }
 
         if (matchedPixels > horizontalError) {      /** Change the number to increase/decrease errors */
@@ -262,36 +239,27 @@ public class Main extends Application {
         }
         return false;
     }
-    private boolean verticalSort(List<Integer> topPixels, List<Integer> bottomPixels){
+
+    private boolean verticalSort(List<Integer> topPixels, List<Integer> bottomPixels) {
         int matchedPixels = 0;
-        for (int j = 0; j < 900; j++) {
-            if(j<=300){
-                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
-                    matchedPixels++;
-                }
-            }
-            if(j>300&&j<=600){
-                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
-                    matchedPixels++;
-                }
-            }
-            if(j>600&&j<900){
-                if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
-                    matchedPixels++;
-                }
+        for (int j = 0; j < border; j++) {
+
+            if (Math.abs(topPixels.get(j) - bottomPixels.get(j + Puzzle.SIZE * 3)) < 10) {
+                matchedPixels++;
             }
         }
-        if(numbsOfTurnsV>150){
-            verticalError-=10;
-            numbsOfTurnsV=0;
+        if (numbsOfTurnsV > 200) {
+            verticalError -= 20;
+            numbsOfTurnsV = 0;
         }
-        if(matchedPixels > verticalError){
+        if (matchedPixels > verticalError) {
             return true;
         }
         return false;
     }
+
     private Set<Integer> getRandomSet(int bound) {
-        int numbersNeeded = 6;
+        int numbersNeeded = numberOfPuzzles;
         if (bound < numbersNeeded) {
             throw new IllegalArgumentException("Can't ask for more numbers than are available");
         }
@@ -308,8 +276,8 @@ public class Main extends Application {
         List<Long> colours = new ArrayList<>();
         int tWidth = image.getWidth();
         int tHeight = image.getHeight();
-        int row = 2;
-        int col = 3;
+        int row = numOfRows;
+        int col = numOfColumns;
         int eWidth = tWidth / col;
         int eHeight = tHeight / row;
         int x = 0;
@@ -324,7 +292,7 @@ public class Main extends Application {
                     count++;
                     BufferedImage SubImgage = image.getSubimage(y, x, eWidth, eHeight);
                     y += eWidth;
-                    ImageIO.write(SubImgage, "jpeg", new File("/home/andrew/puzzles/src/tiles/" + count + format));
+                    ImageIO.write(SubImgage, "jpeg", new File("/home/andrew/puzzles/src/tiles/" + count + ".jpeg"));
 
 
                 } catch (Exception e) {

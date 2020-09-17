@@ -1,17 +1,17 @@
 
-T
-java:S1128"9Remove this unused import 'java.awt.image.BufferedImage'.(×íÐ‡þÿÿÿÿ
 W
 java:S1128"<Remove this unused import 'javafx.embed.swing.SwingFXUtils'.(‡Ç›†ýÿÿÿÿ
-?
-java:S1128")Remove this unused import 'java.io.File'.(†Ð¥Å
+Q
+java:S2696W"6Make the enclosing method "static" or remove this set.(¢™Œ½üÿÿÿÿ
 H
 java:S1128"2Remove this unused import 'javax.imageio.ImageIO'.(‘çÔû
 Q
-java:S2696X"6Make the enclosing method "static" or remove this set.(¢™Œ½üÿÿÿÿ
-F
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ
+java:S2696U"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
+T
+java:S1128"9Remove this unused import 'java.awt.image.BufferedImage'.(×íÐ‡þÿÿÿÿ
+?
+java:S1128")Remove this unused import 'java.io.File'.(†Ð¥Å
 K
 java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ
-Q
-java:S2696V"6Make the enclosing method "static" or remove this set.(ëæûÿÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ
